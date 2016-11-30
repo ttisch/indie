@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Indie!</title>
+  <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Josefin Slab">
+  <link href="css/site.css" rel="stylesheet"/>
+  <link href="css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="css/bootstrap-theme.min.css" rel="stylesheet"/>
+</head>
+<body>
+  <div class="container" style="width: 850px; margin: auto;">
+    <div class="row">
+      <div class="col-md-12">
+        &nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-10">
+        <h1>Indie!</h1>
+        <h2 class="sub">Simple 2D Platformer</h2>
+      </div>
+      <div class="col-md-2">
+        <img alt="" src="assets/indie_single.png" width="80" style="margin-top: 15px;" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        &nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="phaserContainer" style="width: auto; margin: auto;"></div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="content-wrapper">
+      <div style="text-align: center;">
+        <p>&copy; 2015 - LiTho Productions</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="js/phaser.min.js"></script>
+
+  <script type="text/javascript">
+  gameStates = {};
+  </script>
+  <script type="text/javascript" src="boot.js"></script>
+  <script type="text/javascript" src="mainmenu.js"></script>
+  <script type="text/javascript" src="game.js"></script>
+  <!-- <script type="text/javascript" src="level2.js"></script>
+  <script type="text/javascript" src="level3.js"></script> -->
+
+  <script type="text/javascript">
+
+  var game = new Phaser.Game(800, 320, Phaser.AUTO, 'phaserContainer');
+
+  // VARIABLES
+  var vars = {
+    InGame: {
+      //Money: 0,
+      Ground: undefined,
+      CoinLayer: undefined,
+      Player: undefined,
+      PlayerCoins: 0,
+      PlayerScore: function() {
+        return vars.InGame.Player.PlayerCoins * 10;
+      },
+      FinishedLevel: false,
+      Level: 1,
+      LevelText: undefined,
+      ScoreText: undefined,
+      GameOver: false,
+      Enemies: [],
+      JumpTimer: 0,
+      MaxLevels: 3
+    }
+  };
+
+  game.state.add('Boot', gameStates.Boot);
+  game.state.add('MainMenu', gameStates.MainMenu);
+  game.state.add('Game', gameStates.Game);
+  // game.state.add('Level1', gameStates.Level1);
+  // game.state.add('Level2', gameStates.Level2);
+  // game.state.add('Level3', gameStates.Level3);
+
+  game.state.start('Boot');
+
+  </script>
+
+</body>
+</html>
